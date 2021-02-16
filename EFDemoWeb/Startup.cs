@@ -52,6 +52,5 @@ namespace EFDemoWeb
                 endpoints.MapRazorPages();
             });
         }
-        // Github Test
     }
 }
