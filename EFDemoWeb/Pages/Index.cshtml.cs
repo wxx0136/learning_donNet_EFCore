@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 using EFDataAccessLibrary.DataAccess;
 using EFDataAccessLibrary.Models;
 using Microsoft.EntityFrameworkCore;
@@ -30,8 +27,15 @@ namespace EFDemoWeb.Pages
             var people = _db.People
                 .Include(a => a.Addresses)
                 .Include(e => e.EmailAddresses)
+                //.Where(x=>ApprovedAge(x.Age))
+                .Where(x=>x.Age>=18 && x.Age<=65)
                 .ToList();
         }
+
+        //private bool ApprovedAge(int age)
+        //{
+        //    return (age >= 18 && age <= 65);
+        //}
 
         private void LoadSampleData()
         {
